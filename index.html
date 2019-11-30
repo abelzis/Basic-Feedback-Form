@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Form</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+  </head>
+
+  <body>
+    <div class="form">
+      <form id="form1" action="/feedbacks" method="POST">
+        <!-- <span class="span-text">First name:</span><br /> -->
+        <input type="text" id="name" name="name" placeholder="Name" /><br />
+        <!-- <span class="span-text">Email:</span><br /> -->
+        <input type="text" id="email" name="email" placeholder="Email" /><br />
+        <!-- <span class="span-text">Date:</span> -->
+        <input type="date" id="date-picker" name="date" /><br />
+      </form>
+      <div class="comment">
+        <textarea
+          id="comment"
+          rows="6"
+          cols="50"
+          maxlength="500"
+          name="comment"
+          form="form1"
+          placeholder="Write your comment here..."
+        ></textarea>
+      </div>
+      <div id="submit-button">
+        <input
+          type="submit"
+          name="button"
+          form="form1"
+          text="Submit"
+          value="Submit"
+        />
+      </div>
+    </div>
+    <h2>User feedback</h2>
+    <div id="posted-feedback"></div>
+    <script>
+      // Get today
+      Date.prototype.toDateInputValue = function() {
+        var local = new Date(this);
+        local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+        return local.toJSON().slice(0, 10);
+      };
+
+      // Update date
+      document.getElementById(
+        "date-picker"
+      ).value = new Date().toDateInputValue();
+
+      // Create feedback blocks
+      function loadPostedFeedback(feedback) {
+        // feedback is jsonObject
+
+        var postedDiv = document.getElementById("posted-feedback");
+
+        for (let i = feedback["body"].length - 1; i >= 0; i--) {
+          var feedbackDiv = document.createElement("DIV");
+          feedbackDiv.className = "feedback";
+
+          // Adding name
+          var nameDiv = document.createElement("DIV");
+          nameDiv.innerHTML = feedback["body"][i]["name"];
+          nameDiv.className = "feedbacker-name";
+          feedbackDiv.appendChild(nameDiv);
+
+          // Adding comment
+          var commentDiv = document.createElement("DIV");
+          commentDiv.innerHTML = feedback["body"][i]["comment"];
+          commentDiv.className = "feedbacker-comment";
+          feedbackDiv.appendChild(commentDiv);
+
+          // Adding date posted
+          var dateDiv = document.createElement("DIV");
+          dateDiv.innerHTML = "Posted on: " + feedback["body"][i]["date"];
+          dateDiv.className = "feedbacker-date";
+          feedbackDiv.appendChild(dateDiv);
+
+          postedDiv.appendChild(feedbackDiv); // append to main div
+        }
+      }
+
+      // Access local API /feedbacks
+      function accessLocalAPI() {
+        let requestURL = "http://localhost:3212/feedbacks";
+        let request = new XMLHttpRequest();
+        request.open("GET", requestURL);
+
+        request.responseType = "json";
+        request.send();
+
+        // Get response
+        request.onload = function() {
+          const feedback = request.response;
+          loadPostedFeedback(feedback);
+        };
+      }
+
+      accessLocalAPI();
+
+      // document.getElementById("game-start").appendChild(startGameScreen);
+    </script>
+  </body>
+</html>

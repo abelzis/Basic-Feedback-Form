@@ -1,0 +1,113 @@
+.form {
+  width: 100%;
+  margin: auto;
+  /* display: flex; */
+}
+
+#form1 {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+}
+
+.text {
+}
+
+input {
+  font-size: 22px;
+  margin-top: 10px;
+}
+
+input[name="button"] {
+  width: 80px;
+  margin: auto;
+  font-size: 18px;
+  text-align: center;
+}
+
+#submit-button {
+  width: 50%;
+  margin: auto;
+  margin-top: 10px;
+  text-align: center;
+}
+
+#date-picker {
+  font-size: 16px;
+}
+
+textarea {
+  resize: none;
+}
+
+.comment {
+  width: 380px;
+  margin: auto;
+  margin-top: 20px;
+}
+
+#comment {
+  margin: auto;
+}
+
+.span-text {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  font-size: 22px;
+  margin: auto;
+  /* margin-top: 10px; */
+}
+
+.span-text-div {
+  margin-top: 15px;
+}
+
+#posted-feedback {
+  margin-top: 15px;
+  height: 400px;
+  overflow: scroll;
+}
+
+.feedback {
+  width: 400px;
+  margin: auto;
+  padding-left: 20px;
+  margin-bottom: 30px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: aquamarine;
+}
+
+.feedbacker-name {
+  color: #0221aa;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 22px;
+  padding-left: 20px;
+}
+
+.feedbacker-comment {
+  background-color: aquamarine;
+  border-radius: 5px;
+  padding: 8px;
+}
+
+.feedbacker-date {
+  font-size: 12px;
+  text-align: right;
+  opacity: 50%;
+  padding-top: 3px;
+  margin-bottom: 15px;
+}
+
+body {
+  margin: 0;
+}
+
+h2 {
+  text-align: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  /* border-bottom-style: fill;
+  border-bottom-color: black;
+  border-bottom-width: 1px; */
+}
